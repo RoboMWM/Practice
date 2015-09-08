@@ -1,0 +1,262 @@
+﻿<Page
+    x:Class="LeBetaTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LeBetaTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <!--<CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Sync"
+                              Label="Refresh"
+                              Click="AppBarButton_Click_Sync"/>
+                <AppBarButton Icon="Add"
+                              Label="Add"
+                              Click="AppBarButton_Click_Add"/>
+                <AppBarButton Icon="Find"
+                              Label="Search"
+                              Click="AppBarButton_Click_Search"/>
+            </CommandBar.PrimaryCommands>-->
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Help"
+                              Label="About"
+                              Click="AppBarButton_Click_Help"/>
+                <AppBarButton Icon="Help"
+                              Label="Rate and Review"
+                              Click="AppBarButton_Click_Rate"/>
+                <AppBarButton Icon="Help"
+                              Label="Toggle Debug Info"
+                              Click="AppBarButton_Click_Debug"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<TextBlock Grid.Row="0"
+                   Margin="20"
+                   Text="how 2 hub"
+                   Style="{StaticResource HeaderTextBlockStyle}" />-->
+
+        <Pivot Title="LeBetaTest"
+               Grid.Row="1">
+            <!--<StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>-->
+
+            <!--TODO: Content should be placed within the following grid-->
+
+            <!--<PivotItem Header="Feed">
+                <ScrollViewer>
+                    <ListView x:Name="FeedListView"
+                              ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                              SelectionChanged="FeedListView_SelectionChanged"
+                              Tapped="FeedListView_Tapped"
+                              Margin="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                --><!--Actual content is here--><!--
+                                <StackPanel Margin="-10,10,0,10">
+                                    <TextBlock Text="{Binding name}" FontSize="18" />
+                                    <TextBlock Text="{Binding description}" Opacity="0.5" />
+                                     --><!--Add pictures of food to feed oneself :P--><!--
+                                </StackPanel>
+                                --><!--End of actual content--><!--
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </PivotItem>-->
+
+            <PivotItem Header="Tip">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Your standard tip calculator, now with real logic"/>
+                        <TextBlock Grid.Row="1"
+                                   Margin="0,0,80,0"
+                                   Style="{StaticResource TitleTextBlockStyle}" 
+                                   FontSize="36"
+                                   Text="Your bill:"
+                                   TextAlignment="Right"/>
+                        <TextBox Name="billAmountTextBox" 
+                                 Text="$0.00"
+                                 TextAlignment="Right"
+                                 HorizontalAlignment="Right" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top"
+                                 InputScope="Number"
+                                 FontSize="36"
+                                 LostFocus="billAmountTextBox_LostFocus" 
+                                 TextChanged="billAmountTextBox_TextChanged" 
+                                 GotFocus="billAmountTextBox_GotFocus" />
+                        <TextBlock Grid.Row="1" 
+                                   Margin="0,0,80,0"
+                                   Style="{StaticResource TitleTextBlockStyle}" 
+                                   FontSize="36"
+                                   Text="Your tip percentage:"
+                                   TextAlignment="Right"/>
+                        <TextBox Name="tipAmountTextBox" 
+                                 Text="15%"
+                                 TextAlignment="Right"
+                                 HorizontalAlignment="Right" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top"
+                                 InputScope="Number"
+                                 FontSize="36"
+                                 LostFocus="tipAmountTextBox_LostFocus" 
+                                 TextChanged="tipAmountTextBox_TextChanged" 
+                                 GotFocus="tipAmountTextBox_GotFocus" />
+                        <TextBlock Grid.Row="1" 
+                                   Margin="0,0,80,0"
+                                   Style="{StaticResource TitleTextBlockStyle}" 
+                                   FontSize="36"
+                                   Text="Amount to tip:"
+                                   TextAlignment="Right"/>
+                        <TextBlock Name="tipFinalTextBlock" 
+                                 Text="$0.00"
+                                 TextAlignment="Right"
+                                 HorizontalAlignment="Right" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top"
+                                 FontSize="36"/>
+                        <TextBlock Grid.Row="1" 
+                                   Margin="0,0,80,0"
+                                   Style="{StaticResource TitleTextBlockStyle}" 
+                                   FontSize="36"
+                                   Text="Total bill:"
+                                   TextAlignment="Right"/>
+                        <TextBlock Name="billFinalTextBlock" 
+                                 Text="$0.00"
+                                 TextAlignment="Right"
+                                 HorizontalAlignment="Right" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top"
+                                 FontSize="36"/>
+                        
+                        <TextBlock Name="debugTitleTextBlock" 
+                                   Text="You shouldn't see me; if you do, a mistake was made! :("
+                                   Visibility="Collapsed"/>
+                        <TextBlock Name="debugTextBlock" 
+                                   TextWrapping="Wrap"
+                                   Visibility="Collapsed"/>
+
+
+                        <!--<Button Content="Activate the arrays"/>-->
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+
+            <PivotItem Header="Basic Calc">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Calculate expressions as if this were WolframAlpha..." FontSize="24" TextWrapping="Wrap"/>
+                        <TextBox x:Name="tb_Input_Equation"
+                                 PlaceholderText="Enter equation here"
+                                 FontSize="18"
+                                 InputScope="NumberFullWidth"/>
+                        <TextBlock Text="Summate equation?" HorizontalAlignment="Right" FontSize="18"/>
+                        <ToggleSwitch x:Name="ts_Repeat" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Toggled="ts_Repeat_Toggled"/>
+                            <TextBox x:Name="tb_Repeat_Value"
+                                     PlaceholderText="Number of summations"
+                                     Visibility="Collapsed"/>
+                        <Button x:Name="calculateButton" 
+                                Content="Calculate" 
+                                HorizontalAlignment="Right"
+                                Margin="0,20,20,0" Height="70" Width="150"
+                                Tapped="calculateButton_Tapped"/>
+                        <TextBlock x:Name="tbl_Output"
+                                   Text="Answer will be shown here"
+                                   FontSize="48"
+                                   TextWrapping="Wrap"/>
+
+
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+
+            <PivotItem Header="Limit Calc">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Calculate limits with ease...?" FontSize="24"/>
+                        <TextBox x:Name="tb_LimitInput_Equation"
+                                 PlaceholderText="Enter equation here"
+                                 FontSize="18"/>
+                        <TextBox x:Name="tb_LimitInput_Value"
+                                 PlaceholderText="''as x approaches...''"/>
+                        <ComboBox x:Name="cb_limitSide" Margin="0,20,0,0" HorizontalAlignment="Center">
+                            <ComboBoxItem Content="From both sides"/>
+                            <ComboBoxItem Content="From the left side"/>
+                            <ComboBoxItem Content="From the right side"/>
+                        </ComboBox>
+                        <Button x:Name="limitCalculateButton" 
+                                Content="Calculate" 
+                                HorizontalAlignment="Right"
+                                Margin="0,20,20,0" Height="70" Width="150"
+                                Tapped="limitCalculateButton_Tapped"/>
+                        <TextBlock x:Name="tbl_LimitOutput"
+                                   Text="Answer will be shown here"
+                                   FontSize="48"
+                                   TextWrapping="Wrap"/>
+
+
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+
+
+            <!--<PivotItem Header="Feed">
+                <StackPanel>
+                    <TextBlock Text="oi"
+                               FontSize="24"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </PivotItem>
+
+            <PivotItem Header="Nearby">
+                <StackPanel>
+                    <TextBlock Text="Not implemented :("
+                               FontSize="24"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </PivotItem>-->
+        </Pivot>
+
+        <!--<Grid x:Name="LayoutRoot">
+            <ScrollViewer>
+                <ListView x:Name="ValuesListView"
+                          ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                          SelectionChanged="ListView_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            -->
+        <!--Actual content is here-->
+        <!--
+                            <StackPanel Margin="10">
+                                <TextBlock Text="{Binding Id}"/>
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Description}" />
+                            </StackPanel>
+                            -->
+        <!--End of actual content-->
+        <!--
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </Grid>-->
+
+    </Grid>
+</Page>
